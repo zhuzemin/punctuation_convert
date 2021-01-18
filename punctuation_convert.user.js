@@ -13,7 +13,7 @@
 // @grant         GM_setValue
 // @grant         GM_getValue
 // @author      zhuzemin
-// @version     1.0
+// @version     1.01
 // ==/UserScript==
 //config
 let config = {
@@ -30,7 +30,7 @@ setUserPref(
         `English->Chinese: "1"; Chinese->English: "0"`,
 );
 
-$(document).ready(function () {
+let init = function () {
         try {
                 document.title = convert(document.title);
                 findTextNode(document.documentElement);
@@ -38,7 +38,8 @@ $(document).ready(function () {
         } catch (e) {
                 debug(e);
         }
-});
+}
+window.addEventListener('load', init);
 
 function findTextNode(o) {
         let obj = o.childNodes;
